@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subir Archivos</title>
+</head>
+<body>
+    <h1>Subir Archivos</h1>
+    <form action="/folders/<%= folderId %>/upload" method="POST" enctype="multipart/form-data">
+        <label for="file">Selecciona un archivo:</label>
+        <input type="file" id="file" name="file" required />
+        <button type="submit">Subir Archivo</button>
+    </form>
+    <a href="/folders/<%= folderId %>">Volver a la carpeta</a>
+</body>
+</html>

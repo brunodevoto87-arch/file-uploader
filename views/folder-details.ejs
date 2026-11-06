@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carpeta: <%= folder.name %></title>
+</head>
+<body>
+    <header>
+    <h1>Mi Nube</h1>
+    <a href="/folders">← Volver a mis carpetas</a>
+    <a href="/logout">Cerrar Sesion</a>
+    </header>
+    <main>
+        <h2>Carpeta: <%= folder.name %></h2>
+        <!--Boton para ir al formulario de subida-->
+        <a href="/folders/<%= folder.id %>/upload">
+            <button style="padding: 10px; cursor: pointer;">+ Subir un Archivo</button>
+        </a>
+        <h3>Archivos en esta carpeta</h3>
+        <ul>
+            <% if (folder.files && folder.files.length > 0){ %>
+            <% folder.files.forEach(file => { %>
+                <li style="margin-bottom: 10px;">
+                    <!--Enlace para descargar/ver el archivo-->
+                    <a href="<%= file.url %>" target="_blank"><%= file.name %></a>
+                    <span>(<%= (file.size / 1024).toFixed(2) %> KB)</span>
+                    <br>
+                    <small>Subido el: <%= file.createdAt.toLocaleDateString() %></small>
+                    <!--Boton para eliminar archivo-->
+                    <form action="/folders/<%= folder.id %>/files/<%= file.id %>/delete" method="POST" style="display: inline; margin-left: 10px;">
+                        <button type="submit" onclick="return confirm('¿Estas Seguro de querer borrar este archivo?')">Eliminar Archivo</button>
+                    </form>
+                </li>
+            <% }) %>
+            <% } 
+            else { %>
+                <p>No hay archivos en esta carpeta todavia</p>
+            <% } %>
+        </ul>
+    </main>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - File Uploader</title>
+</head>
+<body>
+    <header>
+        <h1>Mi Nube</h1>
+        <% if (user) { %>
+            <p>Bienvenido, <strong><%= user.username %></strong>!</p>
+            <a href="/logout">Cerrar Sesion</a>
+        <% } 
+        else { %>
+            <a href="/login">Iniciar Sesion</a>
+            <a href="/sign-up">Crear Cuenta</a>
+        <% } %>
+    </header>
+    <main>
+        <% if (user) { %>
+            <h2>Tus Carpetas</h2>
+            <a href="/folders/new">Crear carpeta</a>
+            <% if (folders.length) { %>
+                <ul>
+                    <% folders.forEach((folder) => { %>
+                        <li>
+                            <a href="/folders/<%= folder.id %>"><%= folder.name %></a>
+                            <form action="/folders/<%= folder.id %>/delete" method="POST" style="display: inline;">
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>Todavía no tienes carpetas.</p>
+            <% } %>
+        <% }
+        else{ %>
+            <h2>Bienvenido a tu nube personal</h2>
+            <p>Registrate para empezar a guardar archivos.</p>
+        <% } %>
+    </main>
+</body>
+</html>

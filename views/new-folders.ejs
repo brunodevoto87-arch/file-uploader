@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Carpeta</title>
+</head>
+<body>
+    <h1>Crear Nueva Carpeta</h1>
+    <!--El action apunta  a la ruta POST que definimos en folders.js-->
+    <form action="/folders" method="POST">
+        <label for="folderName">Nombre de la carpeta:</label>
+        <input type="text" id="FolderName" name="folderName" required />
+        <button type="submit">Crear Carpeta</button>
+    </form>
+    <br>
+    <a href="/">Volver al Inicio</a>
+</body>
+</html>
