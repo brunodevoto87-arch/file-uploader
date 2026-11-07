@@ -31,9 +31,11 @@ model File {
   folderId    Int
   folder      Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
 }
-model session{
-  id    String  @id
-  sid   String  @unique
-  data  String  @db.Text
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String   @db.Text
   expiresAt DateTime
+
+  @@map("session") // <-- Esto le dice a Prisma que use la tabla "session" en minúscula
 }
